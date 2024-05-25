@@ -15,7 +15,9 @@ let editID = "";
 // ****** EVENT LISTENERS **********
 form.addEventListener('submit', addItem);
 
-clearBtn.addEventListener('click', clearItems)
+clearBtn.addEventListener('click', clearItems);
+
+// window.addEventListener("DOMContentLoaded", setupItems);
 // ****** FUNCTIONS ***** *****
 function addItem(e) {
     e.preventDefault();
@@ -43,7 +45,7 @@ function addItem(e) {
             <i class="fas fa-trash"></i>
           </button>
         </div>`
-        const deleteBtn = element.querySelector('.delete-btn').addEventListener('click', deleteItem);
+        const deleteBtn = element.querySelector('.delete-btn').addEventListener('click', deleteItems);
         const editBtn = element.querySelector('.edit-btn').addEventListener('click', editItem);
 
         //appending a list
@@ -87,7 +89,7 @@ function clearItems(){
     container.classList.remove('show-container');
     displayAlert("List is empty", "danger")
     setBackToDefault();
-    //localStorage.removeItem('list)
+    localStorage.removeItem('list')
 }
 
 // delete items
@@ -134,6 +136,7 @@ function setBackToDefault(){
 
 function addToLocalStorage(id,value){
     const grocery = { id, value };
+    console.log(grocery)
     let items = getLocalStorage();
     items.push(grocery);
     localStorage.setItem("list", JSON.stringify(items));
@@ -168,5 +171,5 @@ function editLocalStorage(id,value){
     });
     localStorage.setItem("list", JSON.stringify(items));
   }
-}
+
 // ****** SETUP ITEMS **********
