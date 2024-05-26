@@ -59,13 +59,16 @@ function addItem(e) {
     addToLocalStorage(id, value);
     // set back to default
     setBackToDefault();
-    } else if (value && editFlag) {
-        console.log('editing')
-    } 
-    else{
-        //console.log('empty')
-      displayAlert('please enter a value');
-      } 
+    }else if (value !== "" && editFlag) {
+      editElement.innerHTML = value;
+      displayAlert("value changed", "success");
+  
+      // edit  local storage
+      editLocalStorage(editID, value);
+      setBackToDefault();
+    } else {
+      displayAlert("please enter value", "danger");
+    }
     }
       // display alert
 function displayAlert(text, action) {
@@ -113,6 +116,7 @@ function deleteItems(e){
 // edit item
 function editItem(e) {
     const element = e.currentTarget.parentElement.parentElement;
+    // console.log(element);
     // set edit item
     editElement = e.currentTarget.parentElement.previousElementSibling;
     // set form value
